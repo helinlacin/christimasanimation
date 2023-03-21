@@ -1,0 +1,92 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    background-color: #ff0000;
+}
+.container{
+  position: relative;
+  width: 100%;
+  height:100vh;
+  overflow: hidden;
+}
+.container::before{
+    content:'';
+    position:absolute;
+    bottom:0;
+    width: 100%;
+    height:200px;
+    background: url(tree.png);
+    z-index:1;
+}
+.circle{
+    position:absolute;
+    top:10%;
+    left:50%;
+    transform: translateX(-50%);
+    width:300px;
+    height:300px;
+    background:#fff;
+    border-radius:50%;
+}
+.circle::before{
+    content:'';
+    position:absolute;
+    /*  Sonunda position ile kullanabileceğimiz bir kısa kullanım için inset özelliği geldi. 
+    Bu sayede artık top left right bottom değerlerini tek bir özellikte tanımlayabilirsiniz. */
+    inset:-200px  -300px;
+    background: url(kızak.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size:400px;
+    animation:animate 5s ease-in infinite;
+
+}
+@keyframes animate{
+    0%{
+        transform: translateY(-25px);
+}
+100%{
+    transform: translateY(-25px);
+}
+50%{
+    transform: translateY(25px);
+}
+}
+.circle::after{
+    content: 'Happy Christimas';
+     position:absolute;
+     inset: -50px -200px;
+     font-size:30px;
+     display:flex;
+     justify-content:center;
+     align-items:flex-end;
+     color: #fff;
+}
+.container .snow{
+    position:relative;
+    display: flex;
+}
+.container .snow span{
+    position:relative;
+    min-width:10px;
+    height:5px;
+    background:#fff;
+    border-radius:50%;
+    margin:0 1vw;
+    box-shadow:-100px 20px 5px #fff, 100px 20px 10px #fff;
+    animation:animateSnow 4s linear infinite;
+    animation-delay: calc(75s/var(--i));
+    
+}
+@keyframes animateSnow {
+    0%   {transform:translateY(-75px);}
+    100% {transform: translateY(750px);}
+  }
